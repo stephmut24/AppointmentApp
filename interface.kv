@@ -1,0 +1,1062 @@
+MDNavigationLayout:
+    ScreenManager:
+        id: screen_manager
+
+        MDScreen:
+            name: "main"
+            MDFloatLayout:
+                md_bg_color: (1, 1, 1, 1) if app.theme_cls.theme_style == "Light" else (0.1, 0.1, 0.1, 1)
+
+                Image:
+                    source: "images/accueil.png"
+                    size_hint: .7, .7
+                    pos_hint: {"center_x": .5, "center_y": .75}
+
+                MDLabel:
+                    text: "Bienvenue sur HospApp"
+                    font_size: "24sp"
+                    pos_hint: {"center_y": .52}
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: (0.13, 0.13, 0.13, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+
+                MDLabel:
+                    text: "Connectez-vous ici"
+                    font_size: "14sp"
+                    pos_hint: {"center_x": .5, "center_y": .42}
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: (0, 0.5, 1, 1)
+
+                MDRaisedButton:
+                    text: "Patient"
+                    size_hint: .7, .065
+                    height:"70dp"
+                    pos_hint: {"center_x": .5, "center_y": .32}
+                    on_release:
+                        app.go_to_login()
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0.933, 1, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [7]
+                
+                MDRaisedButton:
+                    text: "Docteur"
+                    size_hint: .7, .065
+                    pos_hint: {"center_x": .5, "center_y": .18}
+                    on_release:
+                        app.go_to_login_doctor()
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0.933, 1, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [7]
+                MDIconButton:
+                    icon: "theme-light-dark"
+                    user_font_size: "20sp"
+                    size_hint: None, None
+                    size: "40dp", "40dp"
+                    md_bg_color: (0.9, 0.9, 0.9, 1) if app.theme_cls.theme_style == "Light" else (0.2, 0.2, 0.2, 1)
+                    pos_hint: {"right": 1, "top": 1}
+                    on_release: app.toggle_theme()
+
+
+        
+        MDScreen:
+            name: "login"
+            MDFloatLayout:
+                md_bg_color: (1, 1, 1, 1) if app.theme_cls.theme_style == "Light" else (0, 0, 0, 1)
+
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": 0.95}
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: (26/255, 24/255, 58/255, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                    on_release:
+                        app.go_to_connexion()
+                
+                Image:
+                    source: "images/accueil.png"
+                    size_hint: 0.8, 0.8
+                    pos_hint: {"center_x": 0.5, "center_y": 0.70}
+                
+                MDTextField:
+                    id: username
+                    hint_text: "Nom d'utilisateur"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.50}
+                    icon_right: "account"
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+
+                MDTextField:
+                    id: password
+                    hint_text: "Mot de passe"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.38}
+                    icon_right: "lock"
+                    password: True
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+
+                Button:
+                    text: "Pas de compte? Inscrivez-vous"
+                    font_size: "13sp"
+                    background_color: 0, 0, 0, 0
+                    pos_hint: {"center_x": .60, "center_y": .30}
+                    size_hint: None, None
+                    size: self.texture_size
+                    color: (0, 0, 1, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                    on_release:app.go_to_inscription()      
+                
+                MDRaisedButton:
+                    text: "Se connecter"
+                    font_size: "13sp"
+                    size_hint : .70, .065
+                    background_color : 0, 0.933, 1, 1
+                    pos_hint: {"center_x": .5, "center_y": .20}
+                    on_release: app.validate_login()
+                        
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0.933, 1, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [7]
+
+
+        
+        MDScreen:
+            name: "login_doctor"
+            MDFloatLayout:
+                md_bg_color: (1, 1, 1, 1) if app.theme_cls.theme_style == "Light" else (0, 0, 0, 1)
+
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": 0.95}
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: (26/255, 24/255, 58/255, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                    on_release:
+                        app.go_to_connexion()
+                
+                Image:
+                    source: "images/doctor.png"
+                    size_hint: 0.8, 0.8
+                    padding:"15dp","0dp","0dp","0dp"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.75}
+                
+                MDTextField:
+                    id: username_d
+                    hint_text: "Nom d'utilisateur"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.50}
+                    icon_right: "account"
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+
+                MDTextField:
+                    id: password_d
+                    hint_text: "Mot de passe"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.38}
+                    icon_right: "lock"
+                    password: True
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                
+                MDRaisedButton:
+                    text: "Se connecter"
+                    font_size: "13sp"
+                    size_hint : .70, .065
+                    background_color : 0, 0.933, 1, 1
+                    pos_hint: {"center_x": .5, "center_y": .20}
+                    on_release:app.check_login_credentials_doctors()
+                        
+                    canvas.before:
+                        Color:
+                            rgba: (0, 0.933, 1, 1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [7]
+        MDScreen:
+            name: "inscription"
+            
+            MDFloatLayout:
+                md_bg_color: (1, 1, 1, 1) if app.theme_cls.theme_style == "Light" else (0, 0, 0, 1)
+
+                MDIconButton:
+                    icon: "arrow-left"
+                    pos_hint: {"center_y": 0.95}
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: (26/255, 24/255, 58/255, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                    on_release:
+                        app.go_to_login()
+                Image:
+                    source: "images/accueil.png"  # Changez l'image si nécessaire
+                    size_hint: 0.8, 0.8
+                    pos_hint: {"center_x": 0.5, "center_y": 0.70}
+                
+                MDTextField:
+                    id: new_username
+                    hint_text: "Nom d'utilisateur"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.55}
+                    icon_right: "account"
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                
+                MDTextField:
+                    id: emai
+                    hint_text: "Email"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.42}
+                    icon_right: "email"
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                
+                MDTextField:
+                    id: new_password
+                    hint_text: "Mot de passe"
+                    size_hint_x: 0.85
+                    pos_hint: {"center_x": 0.5, "center_y": 0.31}
+                    icon_right: "lock"
+                    password: True
+                    mode: "rectangle"
+                    text_color: (0, 0, 0, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                
+                Button:
+                    text: "Déjà? Connectez-vous"
+                    font_size: "13sp"
+                    background_color: 0, 0, 0, 0
+                    pos_hint: {"center_x": .68, "center_y": .24}
+                    size_hint: None, None
+                    size: self.texture_size
+                    color: (0, 0, 1, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+                    on_release:app.go_to_login()
+                
+                MDRaisedButton:
+                    text: "S'inscrire"
+                    font_size: "13sp"
+                    size_hint : .70, .065
+                    background_color: 0, 0.933, 1, 1
+                    pos_hint: {"center_x": 0.5, "center_y": 0.14}
+                    on_release:
+                        app.submit_user()
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0.933, 1, 1
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [7]
+
+
+        MDScreen:
+            name: "dashboard"
+            BoxLayout:
+                orientation: 'vertical'
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                MDTopAppBar:
+                    title: "HospApp welcome"
+                    
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("toggle")]]
+                    elevation: 4
+
+                MDGridLayout:
+                    cols: 2
+                    padding: "24dp","25dp","3dp","8dp"
+                    spacing: "12dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "125dp", "120dp"
+                        elevation: 10
+                        padding: "8dp"
+                        md_bg_color: 0.67, 0.84, 0.90, 1
+                        MDLabel:
+                            id: patient_count_label
+                            text: "Users     1200"
+                            font_style: "H6"
+                            halign: "center"
+                            theme_text_color: "Custom"
+                            text_color: 0.2, 0.2, 0.2, 1
+
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "125dp", "120dp"
+                        elevation: 10
+                        padding: "8dp"
+                        md_bg_color: 0.75, 0.87, 0.77, 1
+                        MDLabel:
+                            id: patient_count_appoint
+                            text: "Appoints    350"
+                            font_style: "H6"
+                            halign: "center"
+                            theme_text_color: "Custom"
+                            text_color: 0.2, 0.2, 0.2, 1 
+
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "125dp", "120dp"
+                        elevation: 10
+                        padding: "8dp"
+                        md_bg_color: 0.87, 0.87, 0.87, 1
+                        MDLabel:
+                            text: "Doctors       1"
+                            font_style: "H6"
+                            halign: "center"
+                            theme_text_color: "Custom"
+                            text_color: 0.2, 0.2, 0.2, 1
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "125dp", "120dp"
+                        elevation: 10
+                        padding: "8dp"
+                        md_bg_color: 0.80, 0.84, 0.90, 1 
+                        MDLabel:
+                            text: "Settings"
+                            font_style: "H6"
+                            halign: "center"
+                            theme_text_color: "Secondary"
+
+                Widget:
+                    size_hint_y: None
+                    height: "150dp"
+                
+                MDBottomNavigation:
+                    panel_color: app.theme_cls.bg_light
+                    text_color_active: app.theme_cls.primary_color
+                    text_color_normal: app.theme_cls.primary_dark
+                    selected_tab_color: app.theme_cls.bg_light
+                    elevation: 8
+
+                    MDBottomNavigationItem:
+                        name: 'screen_home'
+                        text: 'Home'
+                        icon: 'home'
+                        on_tab_press: app.go_to_dashboard()
+
+                    MDBottomNavigationItem:
+                        name: 'screen_appointments'
+                        text: 'Appointments'
+                        icon: 'calendar'
+                        on_tab_press: app.go_to_appointments_patients()
+
+                    MDBottomNavigationItem:
+                        name: 'screen_profile'
+                        text: 'Profile'
+                        icon: 'account'
+                        on_tab_press: app.go_to_profile()
+
+        MDScreen:
+            name: "register"
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                MDTopAppBar:
+                    title: ""
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+                    elevation: 4
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: "16dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "16dp"
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Fond blanc
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "16dp"
+                        size_hint: None, None
+                        size: "280dp", "500dp"
+                        elevation: 10
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        md_bg_color: app.theme_cls.bg_light
+
+                        MDLabel:
+                            text: "Register Patient"
+                            font_style: "H5"
+                            halign: "center"
+                            padding_y: "12dp"
+
+                        MDTextField:
+                            id: full_name
+                            hint_text: "Full Name"
+                            icon_right: "account"
+                            icon_right_color: app.theme_cls.primary_color
+                            mode: "rectangle"
+                            line_color_focus: app.theme_cls.primary_color
+                            size_hint_x: 0.9
+                            pos_hint: {"center_x": 0.5}
+                            height: "40dp"
+
+                        MDTextField:
+                            id: phone_number
+                            hint_text: "Phone Number"
+                            icon_right: "phone"
+                            icon_right_color: app.theme_cls.primary_color
+                            mode: "rectangle"
+                            line_color_focus: app.theme_cls.primary_color
+                            size_hint_x: 0.9
+                            pos_hint: {"center_x": 0.5}
+                            height: "40dp"  # Ajouté pour correspondre au premier champ
+
+                        MDTextField:
+                            id: date_rdv
+                            hint_text: "Date Rendez-vous"
+                            icon_right: "calendar"
+                            icon_right_color: app.theme_cls.primary_color
+                            mode: "rectangle"
+                            line_color_focus: app.theme_cls.primary_color
+                            size_hint_x: 0.9  # Ajusté pour correspondre au premier champ
+                            pos_hint: {"center_x": 0.5}
+                            height: "40dp"  # Ajouté pour correspondre au premier champ
+                            on_focus: if self.focus: app.show_date_picker()
+
+                        MDTextField:
+                            id: heure_rdv
+                            hint_text: "Heure Rendez-vous"
+                            icon_right: "clock"
+                            icon_right_color: app.theme_cls.primary_color
+                            mode: "rectangle"
+                            line_color_focus: app.theme_cls.primary_color
+                            size_hint_x: 0.9  # Ajusté pour correspondre au premier champ
+                            pos_hint: {"center_x": 0.5}
+                            height: "40dp"  # Ajouté pour correspondre au premier champ
+                            on_focus: if self.focus: app.show_time_picker()
+
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: "12dp"
+                            padding: "16dp"
+
+                            MDRaisedButton:
+                                text: "Cancel"
+                                on_release: app.go_to_dashboard()
+                                md_bg_color: app.theme_cls.primary_dark
+                            MDRaisedButton:
+                                text: "Submit"
+                                size_hint_y: None
+                                height: "48dp"
+                                width:"80dp"
+                                on_release: app.submit_registration()
+        MDScreen:
+            name: "doctors"
+            BoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    title: ""
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+                    elevation: 4
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: "16dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "16dp"
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Fond blanc
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "16dp"
+                        size_hint: None, None
+                        size: "280dp", "500dp"
+                        elevation: 10
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        md_bg_color: app.theme_cls.bg_light
+                        MDLabel:
+                            text: "Register Doctor"
+                            font_style: "H5"
+                            halign: "center"
+                            padding_y: "12dp"
+                        MDTextField:
+                            hint_text: "Full Name"
+                            required: True
+                            icon_right: "account"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Email"
+                            required: True
+                            icon_right: "email"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Phone Number"
+                            required: True
+                            icon_right: "phone"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Address"
+                            required: True
+                            icon_right: "map-marker"
+                            icon_right_color: app.theme_cls.primary_color
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: "12dp"
+                            padding: "16dp"
+                            MDRaisedButton:
+                                text: "Cancel"
+                                on_release: app.go_to_dashboard()
+                                md_bg_color: app.theme_cls.primary_dark
+                            MDRaisedButton:
+                                text: "Submit"
+                                size_hint_y: None
+                                height: "48dp"
+                                on_release: app.submit_doctor_registration()
+
+        MDScreen:
+            name: "appointments"
+            BoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    title: ""
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+                    elevation: 4
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: "16dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "16dp"
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Fond blanc
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "16dp"
+                        size_hint: None, None
+                        size: "280dp", "500dp"
+                        elevation: 10
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        md_bg_color: app.theme_cls.bg_light
+                        MDLabel:
+                            text: "Book Appointment"
+                            font_style: "H5"
+                            halign: "center"
+                            padding_y: "12dp"
+                        MDSpinner:
+                            id: patient_spinner
+                            size_hint_y: None
+                            height: "50dp"
+                            active: True
+                            text: "Select Patient"
+                            values: app.get_patients()
+                        MDSpinner:
+                            id: doctor_spinner
+                            size_hint_y: None
+                            height: "50dp"
+                            active: True
+                            text: "Select Doctor"
+                            values: app.get_doctors()
+                        MDTextField:
+                            hint_text: "Date"
+                            required: True
+                            icon_right: "calendar"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Time"
+                            required: True
+                            icon_right: "clock"
+                            icon_right_color: app.theme_cls.primary_color
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: "12dp"
+                            padding: "16dp"
+                            MDRaisedButton:
+                                text: "Cancel"
+                                on_release: app.go_to_dashboard()
+                                md_bg_color: app.theme_cls.primary_dark
+                            MDRaisedButton:
+                                text: "Submit"
+                                size_hint_y: None
+                                height: "48dp"
+                                on_release: app.submit_appointment()
+
+        MDScreen:
+            name: "profile"
+            BoxLayout:
+                orientation: 'vertical'
+                MDTopAppBar:
+                    title: ""
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+                    elevation: 4
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: "16dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: "16dp"
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  # Fond blanc
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    MDCard:
+                        orientation: "vertical"
+                        padding: "16dp"
+                        size_hint: None, None
+                        size: "280dp", "500dp"
+                        elevation: 10
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        md_bg_color: app.theme_cls.bg_light
+                        MDLabel:
+                            text: "Profile"
+                            font_style: "H5"
+                            halign: "center"
+                            padding_y: "12dp"
+                        MDTextField:
+                            hint_text: "Name"
+                            required: True
+                            icon_right: "account"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Email"
+                            required: True
+                            icon_right: "email"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Phone Number"
+                            required: True
+                            icon_right: "phone"
+                            icon_right_color: app.theme_cls.primary_color
+                        MDTextField:
+                            hint_text: "Address"
+                            required: True
+                            icon_right: "map-marker"
+                            icon_right_color: app.theme_cls.primary_color
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: "12dp"
+                            padding: "16dp"
+                            MDRaisedButton:
+                                text: "Cancel"
+                                on_release: app.go_to_dashboard()
+                                md_bg_color: app.theme_cls.primary_dark
+                            MDRaisedButton:
+                                text: "Submit"
+                                size_hint_y: None
+                                height: "48dp"
+                                on_release: app.submit_profile()
+
+
+
+        MDScreen:
+            name: "dashboard_doctor"
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: "8dp"
+                padding: "12dp", "20dp", "8dp", "8dp"
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                MDLabel:
+                    text: "Espace Docteurs"
+                    font_size: "24sp"
+                    pos_hint: {"center_y": .52}
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: (0.13, 0.13, 0.13, 1) if app.theme_cls.theme_style == "Light" else (1, 1, 1, 1)
+
+                MDGridLayout:
+                    cols: 2
+                    padding: "16dp"
+                    spacing: "16dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "120dp", "120dp"
+                        elevation: 8
+                        padding: "12dp"
+                        md_bg_color: 0.67, 0.84, 0.90, 1  # Couleur de la carte
+                        pos_hint: {"center_x": 0.5}
+
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: "8dp"
+                            padding: "8dp"
+
+                            MDLabel:
+                                text: "Users"
+                                font_style: "H6"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 0.2, 0.2, 0.2, 1
+
+                            MDLabel:
+                                text: "View"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 1, 1  # Couleur bleue pour le texte "View"
+                                on_touch_down: app.go_to_users()
+
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint: None, None
+                        size: "120dp", "120dp"
+                        elevation: 8
+                        padding: "12dp"
+                        md_bg_color: 0.75, 0.87, 0.77, 1  # Couleur de la carte
+                        pos_hint: {"center_x": 0.5}
+
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: "8dp"
+                            padding: "8dp"
+
+                            MDLabel:
+                                text: "Appoints"
+                                font_style: "H6"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 0.2, 0.2, 0.2, 1
+
+                            MDLabel:
+                                text: "View"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 1, 1  # Couleur bleue pour le texte "View"
+                                on_touch_down: app.go_to_appointments()
+
+                Widget:
+                    size_hint_y: None
+                    height: "100dp"
+
+                MDBottomNavigation:
+                    panel_color: app.theme_cls.bg_light
+                    text_color_active: app.theme_cls.primary_color
+                    text_color_normal: app.theme_cls.primary_dark
+                    selected_tab_color: app.theme_cls.bg_light
+                    elevation: 8
+
+                    MDBottomNavigationItem:
+                        name: 'screen_home'
+                        text: 'Home'
+                        icon: 'home'
+                        on_tab_press: app.go_to_dashboard_doctor()
+
+                    MDBottomNavigationItem:
+                        name: 'screen_appointments'
+                        text: 'Appointments'
+                        icon: 'calendar'
+                        on_tab_press: app.go_to_appointments()
+
+                    MDBottomNavigationItem:
+                        name: 'screen_profile'
+                        text: 'Deconnexion'
+                        icon: 'logout'
+                        on_tab_press: app.go_to_connexion()
+
+
+        MDScreen:
+            name: "appointments_doctor"
+            BoxLayout:
+                orientation: 'vertical'
+                
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                MDTopAppBar:
+                    title: "Appointments"
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard_doctor()]]
+                    elevation: 4
+
+                ScrollView:
+                    size_hint: (1, 0.8)
+                    do_scroll_x: False
+                    do_scroll_y: True
+                   
+                    spacing: "10dp"
+                    
+                    GridLayout:
+                        id: appointments_container
+                        cols: 1
+                        padding:"14dp","20dp","1dp","1dp"
+                        spacing:"17dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "12dp"
+                            size_hint: None, None
+                            size: "280dp", "120dp"
+                            spacing:"17dp"
+                            elevation: 10
+                            md_bg_color: app.theme_cls.bg_light
+
+                            MDLabel:
+                                id: label_name
+                                text: "John Doe"
+                                font_style: "H6"
+                                halign: "center"
+                                padding_y: "8dp"
+
+                            MDLabel:
+                                id: label_date
+                                text: "Date: 2024-08-20"
+                                halign: "center"
+
+                            MDLabel:
+                                id: label_heure
+                                text: "Heure: 10:00"
+                                halign: "center"
+
+                            BoxLayout:
+                                spacing: "8dp"
+                                padding: [8, 16, 8, 8]  # Ajout d'espace au-dessus des boutons
+                                size_hint_y: None
+                                height: "40dp"
+                                pos_hint: {"center_x": 0.5}
+
+                                MDRaisedButton:
+                                    text: "Del"
+                                    icon: "delete"  # Icône de suppression
+                                    size_hint_x: 0.3
+                                    md_bg_color: 0.9, 0.1, 0.1, 1  # Rouge légèrement plus sombre
+                                    text_color: 1, 1, 1, 1  # Blanc
+
+                                MDRaisedButton:
+                                    text: "Accept"
+                                    icon: "check-circle"  # Icône d'acceptation
+                                    size_hint_x: 0.3
+                                    md_bg_color: 0.1, 0.8, 0.1, 1  # Vert légèrement plus sombre
+                                    text_color: 1, 1, 1, 1  # Blanc
+
+                                MDRaisedButton:
+                                    text: "Reject"
+                                    icon: "close-circle"  # Icône de rejet
+                                    size_hint_x: 0.3
+                                    md_bg_color: 1, 0.5, 0, 1  # Orange légèrement plus sombre
+                                    text_color: 1, 1, 1, 1  # Blanc
+
+        MDScreen:
+            name: "appointement_patient"
+            BoxLayout:
+                orientation: 'vertical'
+                
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                MDTopAppBar:
+                    title: "Appointments"
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+                    elevation: 4
+
+                ScrollView:
+                    size_hint: (1, 0.8)
+                    do_scroll_x: False
+                    do_scroll_y: True
+                   
+                    spacing: "10dp"
+                    
+                    GridLayout:
+                        id: appointments_container_p
+                        cols: 1
+                        padding:"14dp","20dp","1dp","1dp"
+                        spacing:"10dp"
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "12dp"
+                            size_hint: None, None
+                            size: "280dp", "120dp"
+                            spacing:"17dp"
+                            elevation: 10
+                            md_bg_color: app.theme_cls.bg_light
+
+                            MDLabel:
+                                id: label_name
+                                text: "John Doe"
+                                font_style: "H6"
+                                halign: "center"
+                                padding_y: "8dp"
+
+                            MDLabel:
+                                id: label_date
+                                text: "Date: 2024-08-20"
+                                halign: "center"
+
+                            MDLabel:
+                                id: label_heure
+                                text: "Heure: 10:00"
+                                halign: "center"
+                            MDLabel:
+                                id: label_statut
+                                text: "Statut: en attente"
+                                halign: "center"
+
+                            
+
+
+        MDScreen:
+            name: "users"
+            BoxLayout:
+                orientation: 'vertical'
+                canvas.before:
+                    Color:
+                        rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                MDTopAppBar:
+                    title: "Users"
+                    left_action_items: [["arrow-left", lambda x: app.go_to_dashboard_doctor()]]
+                    elevation: 4
+
+                ScrollView:
+                    size_hint: (1, 0.8)
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    padding: "10dp"
+                    spacing: "10dp"
+                    
+                    GridLayout:
+                        cols: 1
+                        padding: [10, 10]
+                        spacing: [10, 10]
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "12dp"
+                            size_hint: None, None
+                            size: "280dp", "120dp"
+                            elevation: 10
+                            md_bg_color: app.theme_cls.bg_light
+
+                            MDLabel:
+                                text: "Jane Smith"
+                                font_style: "H6"
+                                halign: "center"
+                                padding_y: "8dp"
+
+                            MDLabel:
+                                text: "Email: jane@example.com"
+                                halign: "center"
+
+                            MDLabel:
+                                text: "Phone: +123456789"
+                                halign: "center"
+
+                            BoxLayout:
+                                spacing: "8dp"
+                                padding: [8, 16, 8, 8]  # Ajout d'espace au-dessus des boutons
+                                size_hint_y: None
+                                height: "40dp"
+                                pos_hint: {"center_x": 0.5}
+
+                                MDRaisedButton:
+                                    text: "Details"
+                                    size_hint_x: 0.3
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        width: "284dp"
+        BoxLayout:
+            orientation: 'vertical'
+            padding: "8dp"
+            spacing: "8dp"
+
+            ScrollView:
+                MDList:
+                    OneLineIconListItem:
+                        text: "Dashboard"
+                        on_release:
+                            screen_manager.current = "dashboard"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "view-dashboard"
+
+                    OneLineIconListItem:
+                        text: "Rendez-vous"
+                        on_release:
+                            screen_manager.current = "register"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "account-plus"
+
+                    OneLineIconListItem:
+                        text: "Ses rendez-vous"
+                        on_release: 
+                            screen_manager.current = "appointement_patient"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "calendar"
+
+                    OneLineIconListItem:
+                        text: "Profile"
+                        on_release:
+                            screen_manager.current = "profile"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "account-circle"
+                            text_color: app.theme_cls.primary_color
+                    OneLineIconListItem:
+                        text: "Déconnexion"
+                        on_release: 
+                            screen_manager.current = "main"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: "logout"
+            
+        
+        
+
+        

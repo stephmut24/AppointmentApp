@@ -1,0 +1,67 @@
+#import MDCard kivymd.uix.card.MDCard
+
+<PatientScreen>:
+    name: "patient"
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            width: "250dp"  # Réduire la largeur du drawer pour le rendre plus compact
+
+            ScrollView:
+                MDList:
+                    padding: "8dp"
+                    spacing: "4dp"
+
+                    OneLineIconListItem:
+                        text: "Home"
+                        on_release: 
+                            root.manager.current = "main"
+                            root.close_nav_drawer()
+                        IconLeftWidget:
+                            icon: "home"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+
+                    OneLineIconListItem:
+                        text: "Patients"
+                        on_release: 
+                            root.manager.current = "start"
+                            root.close_nav_drawer()
+                        IconLeftWidget:
+                            icon: "account-group"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+
+                    OneLineIconListItem:
+                        text: "Doctors"
+                        on_release: 
+                            root.manager.current = "doctors"
+                            root.close_nav_drawer()
+                        IconLeftWidget:
+                            icon: "doctor"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+
+                    OneLineIconListItem:
+                        text: "Appointments"
+                        on_release: 
+                            root.manager.current = "appointments"
+                            root.close_nav_drawer()
+                        IconLeftWidget:
+                            icon: "calendar-clock"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+
+                    OneLineIconListItem:
+                        text: "Profile"
+                        on_release: 
+                            root.manager.current = "profile"
+                            root.close_nav_drawer()
+                        IconLeftWidget:
+                            icon: "account"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.primary_color
+
+                    MDSeparator:

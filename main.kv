@@ -1,0 +1,56 @@
+<MainScreen>:
+    name: "main"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        Image:
+            source: "assets/logo.png"
+            size_hint: .8, .8
+            pos_hint: {"center_x": .5, "center_y":.7}
+        MDLabel:
+            text: "Karibu !"
+            font_name: "SBarlow"
+            font_size: "28sp"
+            pos_hint: {"center_y": .45}
+            halign: "center"
+            color: 0.063, 0.498, 0.961, 1
+        MDLabel:
+            text: "Le meilleur endroit pour vous faire consulter par les docteurs de la ville"
+            font_name: "MBarlow"
+            font_size: "18sp"
+            size_hint_x:.85
+            pos_hint: {"center_x": .5, "center_y": .30}
+            halign: "center"
+            color: 0.941, 0.569, 0.325, 1
+        Button:
+            text: "Se Connecter"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            background_color: 0, 0, 0, 0
+            font_name: "SBarlow"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgba: 0.063, 0.498, 0.961, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        Button:
+            text: "S'inscrire"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .09}
+            background_color: 0, 0, 0, 0
+            font_name: "SBarlow"
+            color: 0.063, 0.498, 0.961, 1
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "start"
+            canvas.before:
+                Color:
+                    rgba: 0.063, 0.498, 0.961, 1
+                Line:
+                    width:1.2
+                    
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100

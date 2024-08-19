@@ -1,0 +1,60 @@
+<AdminScreen>:
+    name: "admin"
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1  # Appliquer un fond blanc
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDTopAppBar:
+            title: "Appointments"
+            left_action_items: [["arrow-left", lambda x: app.go_to_dashboard()]]
+            elevation: 4
+
+        ScrollView:
+            size_hint: (1, 0.8)
+            do_scroll_x: False
+            do_scroll_y: True
+            
+            spacing: "10dp"
+            
+            GridLayout:
+                id: appointments_container_p
+                cols: 1
+                padding:"14dp","20dp","1dp","1dp"
+                spacing:"10dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "12dp"
+                    size_hint: None, None
+                    size: "280dp", "120dp"
+                    spacing:"17dp"
+                    elevation: 10
+                    md_bg_color: app.theme_cls.bg_light
+
+                    MDLabel:
+                        id: label_name
+                        text: "John Doe"
+                        font_style: "H6"
+                        halign: "center"
+                        padding_y: "8dp"
+
+                    MDLabel:
+                        id: label_date
+                        text: "Date: 2024-08-20"
+                        halign: "center"
+
+                    MDLabel:
+                        id: label_heure
+                        text: "Heure: 10:00"
+                        halign: "center"
+                    MDLabel:
+                        id: label_statut
+                        text: "Statut: en attente"
+                        halign: "center"

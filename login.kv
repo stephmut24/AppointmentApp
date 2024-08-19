@@ -1,0 +1,148 @@
+<LoginScreen>:
+    name: "login"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "Karibu !"
+            font_name: "SBarlow"
+            font_size: "28sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: 0.063, 0.498, 0.961, 1
+
+        MDLabel:
+            text: "Se connecter pour continuer"
+            font_name: "MBarlow"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color: 0.941, 0.569, 0.325, 1
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .68}
+            TextInput:
+                id: email_input
+                hint_text: "Email"
+                font_name: "MBarlow"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0.608, 0.784, 0.969, 1
+                cursor_color: 0.608, 0.784, 0.969, 1
+                font_size: "14sp"
+                cursor_width: "5sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y":.0}
+                size_hint_y: .03
+                md_bg_color: 0.608, 0.784, 0.969, 1
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .55}
+            TextInput:
+                id: password_input
+                hint_text: "Mot de passe"
+                font_name: "MBarlow"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: 0.608, 0.784, 0.969, 1
+                cursor_color: 0.608, 0.784, 0.969, 1
+                font_size: "14sp"
+                cursor_width: "5sp"
+                multiline: False
+                password: True
+            MDFloatLayout:
+                pos_hint: {"center_x": .45, "center_y":0}
+                size_hint_y: .03
+                md_bg_color: 0.608, 0.784, 0.969, 1
+
+        Button:
+            text: "Se Connecter"
+            size_hint: .50, .065
+            pos_hint: {"center_x": .5, "center_y": .43}
+            background_color: 0, 0, 0, 0
+            font_name: "SBarlow"
+            on_press: root.login(email_input.text, password_input.text)
+            
+            canvas.before:
+                Color:
+                    rgba: 0.063, 0.498, 0.961, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        Label: 
+            id: error_message
+            text:""
+            color:[1, 0, 0, 1]
+            pos_hint:{"center_x": .5, "center_y": .38}
+            
+        MDTextButton:
+            text: "Mot de passe oublié"
+            pos_hint: {"center_x": .5, "center_y": .35}
+            color: 0.941, 0.569, 0.325, 1
+            font_size: "12sp"
+            font_name: "MBarlow"
+
+        MDLabel:
+            text: "OU"
+            color: 0.063, 0.498, 0.961, 1
+            pos_hint: {"center_y": .306}
+            font_size: "13sp"
+            font_name: "SBarlow"
+            halign: "center"
+
+        MDFloatLayout:
+            md_bg_color: 0.608, 0.784, 0.969, 1
+            size_hint: .3, .002
+            pos_hint: {"center_x": .3, "center_y": .30}
+
+        MDFloatLayout:
+            md_bg_color: 0.608, 0.784, 0.969, 1
+            size_hint: .3, .002
+            pos_hint: {"center_x": .7, "center_y": .30}
+
+        MDLabel:
+            text: "Réaux sociaux"
+            font_name: "SBarlow"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_y": .25}
+            color: 0.529, 0.522, 0.757, 1
+
+        MDGridLayout:
+            cols: 3
+            size_hint: .48, .07
+            pos_hint: {"center_x": .5, "center_y": .15}
+            Image:
+                source: "assets/g.png"
+            Image:
+                source: "assets/f.png"
+            Image:
+                source: "assets/a.png"
+        MDLabel:
+            text:"Vous n'avez pas de compte?"
+            font_name:"SBarlow"
+            font_size: "12sp"
+            pos_hint:{"center_x": .60, "center_y": .07}
+            color: 0.941, 0.569, 0.325, 1
+        MDTextButton:
+            text:"Creer un compte"
+            font_name:"SBarlow"
+            font_size: "12sp"
+            pos_hint:{"center_x": .75, "center_y": .07}
+            color: 0.941, 0.569, 0.325, 1
+            on_release:
+                root.manager.transition.direction="right"
+                root.manager.current="signup"

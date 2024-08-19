@@ -1,0 +1,92 @@
+<StartScreen>:
+    name: "start"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        # Image de fond couvrant tout l'écran
+        Image:
+            source: "assets/logo.png"
+            allow_stretch: False  # Permet d'étirer l'image pour couvrir toute la surface
+            size_hint: .7, .7    # Prend tout l'espace disponible
+            size:self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+        # Bouton flèche
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": .95}  # Centré horizontalement et placé en haut
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "Karibu !"
+            font_name: "SBarlow"
+            font_size: "28sp"
+            pos_hint: {"center_y": .88}
+            halign: "center"
+            color: 0.063, 0.498, 0.961, 1
+        
+        MDLabel:
+            text: "Vous etes:"
+            font_name: "MBarlow"
+            font_size: "18sp"
+            size_hint_x:.85
+            pos_hint: {"center_x": .5, "center_y": .83}
+            halign: "center"
+            color: 0.941, 0.569, 0.325, 1
+
+        Button:
+            text: "Docteur"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .75}
+            background_color: 0, 0, 0, 0
+            font_name: "SBarlow"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signD"
+            canvas.before:
+                Color:
+                    rgba: 0.063, 0.498, 0.961, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        MDLabel:
+            text: "OU"
+            color: 0.063, 0.498, 0.961, 1
+            pos_hint: {"center_y": .653}
+            font_size: "18sp"
+            font_name: "SBarlow"
+            halign: "center"
+
+        MDFloatLayout:
+            md_bg_color: 0.608, 0.784, 0.969, 1
+            size_hint: .3, .002
+            pos_hint: {"center_x": .3, "center_y": .65}
+
+        MDFloatLayout:
+            md_bg_color: 0.608, 0.784, 0.969, 1
+            size_hint: .3, .002
+            pos_hint: {"center_x": .7, "center_y": .65}
+
+        Button:
+            text: "Patient"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .55}
+            background_color: 0, 0, 0, 0
+            font_name: "SBarlow"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
+            canvas.before:
+                Color:
+                    rgba: 0.063, 0.498, 0.961, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
